@@ -1,0 +1,343 @@
+ಖಂಡಿತ, ನಿಮ್ಮ ಸೂಚನೆಗಳ ಪ್ರಕಾರ ಕಾಲೇಜಿನ ಎಲ್ಲಾ ಮಾಹಿತಿಯನ್ನು ಒಳಗೊಂಡ ವೆಬ್‌ಸೈಟ್ ಅನ್ನು ರಚಿಸಿದ್ದೇನೆ. ಇದು ವಿಭಾಗವಾರು ಫೋಟೋಗಳು, ಮಾಹಿತಿ, ಶಿಕ್ಷಕರ ವಿವರಗಳು ಮತ್ತು ಇತರ ಅಗತ್ಯ ಅಂಶಗಳನ್ನು ಒಳಗೊಂಡಿದೆ.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Information Website</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://image.pollinations.ai/prompt/subtle,abstract,background,college.png');
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+        .hero-section {
+            background: linear-gradient(to right, rgba(67, 56, 202, 0.8), rgba(148, 163, 184, 0.7));
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://image.pollinations.ai/prompt/abstract,geometric,overlay.png');
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .department-card {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .department-card:hover {
+            transform: scale(1.05);
+        }
+
+        .popup-nav {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: #374151;
+            color: white;
+            padding: 2rem;
+            transition: left 0.3s ease-in-out;
+            z-index: 50;
+            overflow-y: auto;
+        }
+
+        .popup-nav.open {
+            left: 0;
+        }
+
+        .popup-nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .popup-nav li {
+            margin-bottom: 1rem;
+        }
+
+        .popup-nav a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .popup-nav a:hover {
+            background-color: #4b5563;
+        }
+
+        .nav-toggle {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            background: #4338ca;
+            color: white;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            z-index: 60;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: #4338ca;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            z-index: 50;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #312e81;
+        }
+        .teacher-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .teacher-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .teacher-image {
+            width: 100%;
+            height: 200px; /* Adjust as needed */
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+
+    <!-- Top Navigation Bar -->
+    <nav class="bg-indigo-600 text-white py-4 fixed top-0 w-full z-40">
+        <div class="container mx-auto flex items-center justify-between px-4">
+            <a href="#" class="text-2xl font-bold">College Name</a>
+            <div class="space-x-4">
+                <a href="#" class="hover:text-gray-200">About</a>
+                <a href="#" class="hover:text-gray-200">Departments</a>
+                <a href="#" class="hover:text-gray-200">Admissions</a>
+                <a href="#" class="hover:text-gray-200">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section mt-16">
+        <div class="container mx-auto hero-content">
+            <h1 class="text-4xl font-extrabold mb-4">Welcome to Our College</h1>
+            <p class="text-lg mb-8">
+                Empowering students to achieve their full potential through quality education and innovative programs.
+            </p>
+            <a href="#" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+                Learn More
+            </a>
+        </div>
+    </section>
+
+    <!-- Side Popup Navigation -->
+    <button class="nav-toggle" id="navToggle">☰ Menu</button>
+    <div class="popup-nav" id="popupNav">
+        <button class="absolute top-4 right-4 text-white text-2xl" onclick="closeNav()">×</button>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Departments</a></li>
+            <li><a href="#">Admissions</a></li>
+            <li><a href="#">Faculty</a></li>
+            <li><a href="#">Research</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
+    </div>
+
+    <!-- Back Button -->
+    <button class="back-button" onclick="history.back()">Back</button>
+
+    <!-- Departments Section -->
+    <section class="py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-semibold text-center mb-8">Our Departments</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Department Card 1 -->
+                <div class="department-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://image.pollinations.ai/prompt/modern,computer,science,lab.png" alt="Computer Science" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">Computer Science</h3>
+                        <p class="text-gray-600">Explore the world of coding, algorithms, and software development.</p>
+                        <a href="#" class="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Department Card 2 -->
+                <div class="department-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://image.pollinations.ai/prompt/modern,electrical,engineering,lab.png" alt="Electrical Engineering" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">Electrical Engineering</h3>
+                        <p class="text-gray-600">Dive into circuits, electronics, and power systems.</p>
+                        <a href="#" class="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Department Card 3 -->
+                <div class="department-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://image.pollinations.ai/prompt/modern,mechanical,engineering,workshop.png" alt="Mechanical Engineering" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">Mechanical Engineering</h3>
+                        <p class="text-gray-600">Design, analyze, and manufacture mechanical systems.</p>
+                        <a href="#" class="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+                <!-- Department Card 4 -->
+                <div class="department-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://image.pollinations.ai/prompt/modern,civil,engineering,lab.png" alt="Civil Engineering" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">Civil Engineering</h3>
+                        <p class="text-gray-600">Plan, design, and construct infrastructure projects.</p>
+                        <a href="#" class="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Department Card 5 -->
+                <div class="department-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://image.pollinations.ai/prompt/modern,chemical,engineering,lab.png" alt="Chemical Engineering" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">Chemical Engineering</h3>
+                        <p class="text-gray-600">Transform raw materials into useful products through chemical processes.</p>
+                        <a href="#" class="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Department Card 6 -->
+                <div class="department-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://image.pollinations.ai/prompt/modern,architecture,department.png" alt="Architecture" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">Architecture</h3>
+                        <p class="text-gray-600">Design and create innovative and sustainable buildings and spaces.</p>
+                        <a href="#" class="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Faculty Section -->
+    <section class="bg-gray-100 py-12">
+    <div class="container mx-auto">
+        <h2 class="text-3xl font-semibold text-center mb-8">Our Esteemed Faculty</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Teacher Card 1 -->
+            <div class="teacher-card">
+                <img src="https://image.pollinations.ai/prompt/portrait%20of%20professor.png" alt="Professor John Doe" class="teacher-image">
+                <div class="p-4">
+                    <h3 class="text-xl font-semibold mb-2">Dr. John Doe</h3>
+                    <p class="text-gray-600 mb-2">Professor of Computer Science</p>
+                    <p class="text-gray-700">Expertise in algorithms and data structures. Passionate about teaching and research.</p>
+                </div>
+            </div>
+
+            <!-- Teacher Card 2 -->
+            <div class="teacher-card">
+                <img src="https://image.pollinations.ai/prompt/portrait%20of%20electrical%20engineer.png" alt="Professor Jane Smith" class="teacher-image">
+                <div class="p-4">
+                    <h3 class="text-xl font-semibold mb-2">Dr. Jane Smith</h3>
+                    <p class="text-gray-600 mb-2">Professor of Electrical Engineering</p>
+                    <p class="text-gray-700">Specializes in power systems and renewable energy. Dedicated to student success.</p>
+                </div>
+            </div>
+
+            <!-- Teacher Card 3 -->
+            <div class="teacher-card">
+                <img src="https://image.pollinations.ai/prompt/portrait%20of%20mechanical%20engineer.png" alt="Professor David Lee" class="teacher-image">
+                <div class="p-4">
+                    <h3 class="text-xl font-semibold mb-2">Dr. David Lee</h3>
+                    <p class="text-gray-600 mb-2">Professor of Mechanical Engineering</p>
+                    <p class="text-gray-700">Focuses on design and manufacturing. Committed to hands-on learning.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2023 College Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const navToggle = document.getElementById('navToggle');
+        const popupNav = document.getElementById('popupNav');
+
+        navToggle.addEventListener('click', () => {
+            popupNav.classList.toggle('open');
+        });
+
+        function closeNav() {
+            popupNav.classList.remove('open');
+        }
+    </script>
+</body>
+</html>
+```
