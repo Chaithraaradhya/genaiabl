@@ -1,0 +1,7 @@
+streamlit
+openai
+singlestoredb
+requests
+python-dotenv
+pydub
+sentence-transformers

@@ -1,13 +1,16 @@
 # Gen-AI Powered UI/UX Design Platform
 
-This project is a Gen-AI powered platform for UI/UX design, featuring voice input, language selection, and AI-generated web content.
+This project is a Gen-AI powered platform for UI/UX design, featuring voice input, text input, language selection, and AI-generated web content.
 
 ## Features
 
-- Voice-to-text input
-- Multilingual support
-- AI-powered HTML/Tailwind CSS code generation
-- Instant preview in your browser
+- **Dual Input Methods**: Voice-to-text input and text input
+- **Multilingual Support**: Support for 10+ Indian languages
+- **AI-Powered HTML Generation**: Creates beautiful HTML/Tailwind CSS websites
+- **Smart Fallbacks**: Automatic fallback to lighter models and template generation
+- **Error Handling**: Robust error handling with retry logic
+- **Instant Preview**: Live HTML preview in the browser
+- **Database Integration**: Vector similarity search for similar designs
 
 ## How to Run Locally
 
@@ -15,26 +18,55 @@ This project is a Gen-AI powered platform for UI/UX design, featuring voice inpu
     ```sh
     pip install -r requirements.txt
     ```
-    (Or manually install: `streamlit`, `openai`, `singlestoredb`, `requests`, `python-dotenv`, `pydub`)
 
-2. Start the app:
+2. Set up environment variables (optional):
+    - Create a `.env` file with your API keys
+    - Or modify the API keys directly in `Works.py` (not recommended for production)
+
+3. Start the app:
     ```sh
     streamlit run Works.py
     ```
 
-3. Open your browser and go to:  
+4. Open your browser and go to:  
    [http://localhost:8501](http://localhost:8501)
 
-## Live Demo
+## Project Structure
 
-If you deploy to Streamlit Community Cloud, you can add a badge like this:
+- `Works.py` - Main Streamlit application
+- `local.py` - Local embedding generation script
+- `uploader.py` - Database upload utility
+- `style.css` - Custom styling
+- `requirements.txt` - Python dependencies
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/)
+## Technologies Used
 
-> Replace the above link with your actual Streamlit Cloud deployment URL once deployed.
+- **Streamlit** - Web framework
+- **Gemini API** - LLM for HTML generation
+- **Sentence Transformers** - Embeddings fallback
+- **SingleStoreDB** - Vector database
+- **Tailwind CSS** - Styling framework
 
----
+## Features in Detail
+
+### Input Methods
+- **Text Input**: Type your website description directly
+- **Voice Input**: Record audio in multiple languages
+
+### Smart Model Selection
+- Primary: Gemini 1.5 Flash (lighter, faster)
+- Fallback: Template-based generation if APIs fail
+- Automatic retry with exponential backoff
+
+### Error Handling
+- Rate limit detection and automatic retry
+- Graceful fallback to template generation
+- Clear error messages and status indicators
 
 ## Repository
 
-[GitHub Repo](https://github.com/Chaithraaradhya/Gen-AI-powered-UI-UX-design-Platform) 
+[GitHub Repo](https://github.com/Chaithraaradhya/genaiabl)
+
+## License
+
+This project is open source and available for use. 
